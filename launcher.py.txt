@@ -1,0 +1,46 @@
+# launcher.py – fix útvonalas indító Windows EXE-hez
+import subprocess, time
+from pathlib import Path
+
+# >>> Ha a projekt máshol van, ezt az útvonalat írd át:
+ROOT = Path(r"C:\Users\david\Downloads\customs_monitor")
+VENV_PY = ROOT / r".venv\Scripts\python.exe"
+
+# egyszerű naplózás
+LOG_DIR = ROOT / "logs"
+LOG_DIR.mkdir(exist_ok=True)
+def log(msg: str):
+    with (LOG_DIR / "launcher.log").open("a", encoding="utf-8") as f:
+        f.write(msg + "\n")
+    print(msg, flush=True)
+
+# ellenőrzés: megvan-e a venv python
+if not VENV_PY.exists():
+    log(f"[HIBA] Nem találom: {VENV_PY}")
+    input("Nyomj Entert a kilépéshez...")
+    raise SystemExit(1)
+
+# biztosítsuk a secrets-et és a data mappát
+(ROOT / ".streamlit").mkdir(exist_ok=True)
+sf = ROOT / ".streamlit" / "secrets.toml"
+if not sf.exists():
+    sf.write_text(
+        'database_url = "sqlite:///C:/Users/david/Downloads/customs_monitor/data/monitor.db"',
+        encoding="utf-8"
+    )
+(ROOT / "data").mkdir(exist_ok=True)
+
+# Collector külön ablakban
+cmd1 = f'start "Customs Monitor - Collector" cmd /k cd /d "{ROOT}" ^&^& "{VENV_PY}" -m src.main'
+log(f"RUN: {cmd1}")
+subprocess.Popen(cmd1, shell=True)
+
+time.sleep(1)
+
+# Dashboard külön ablakban
+cmd2 = f'start "Customs Monitor - Dashboard" cmd /k cd /d "{ROOT}" ^&^& "{VENV_PY}" -m streamlit run dashboard/app.py'
+log(f"RUN: {cmd2}")
+subprocess.Popen(cmd2, shell=True)
+
+log("Indítás kész – két ablaknak kell nyílnia (Collector, Dashboard).")
+input("Nyomj Entert a kilépéshez...")

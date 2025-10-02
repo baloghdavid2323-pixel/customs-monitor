@@ -1,0 +1,15 @@
+RUN: start "Customs Monitor - Collector" cmd /k cd /d "C:\Users\david\Downloads\customs_monitor" ^&^& "C:\Users\david\Downloads\customs_monitor\.venv\Scripts\python.exe" -m src.main
+RUN: start "Customs Monitor - Dashboard" cmd /k cd /d "C:\Users\david\Downloads\customs_monitor" ^&^& "C:\Users\david\Downloads\customs_monitor\.venv\Scripts\python.exe" -m streamlit run dashboard/app.py
+Indítás kész – két ablaknak kell nyílnia (Collector, Dashboard).
+RUN: start "Customs Monitor - Collector" cmd /k cd /d "C:\Users\david\Downloads\customs_monitor" ^&^& "C:\Users\david\Downloads\customs_monitor\.venv\Scripts\python.exe" -m src.main
+RUN: start "Customs Monitor - Dashboard" cmd /k cd /d "C:\Users\david\Downloads\customs_monitor" ^&^& "C:\Users\david\Downloads\customs_monitor\.venv\Scripts\python.exe" -m streamlit run dashboard/app.py
+Indítás kész – két ablaknak kell nyílnia (Collector, Dashboard).
+RUN: start "Customs Monitor - Collector" cmd /k cd /d "C:\Users\david\Downloads\customs_monitor" ^&^& "C:\Users\david\Downloads\customs_monitor\.venv\Scripts\python.exe" -m src.main
+RUN: start "Customs Monitor - Dashboard" cmd /k cd /d "C:\Users\david\Downloads\customs_monitor" ^&^& "C:\Users\david\Downloads\customs_monitor\.venv\Scripts\python.exe" -m streamlit run dashboard/app.py
+Indítás kész – két ablaknak kell nyílnia (Collector, Dashboard).
+RUN: start "Customs Monitor - Collector" cmd /k cd /d "C:\Users\david\Downloads\customs_monitor" ^&^& "C:\Users\david\Downloads\customs_monitor\.venv\Scripts\python.exe" -m src.main
+RUN: start "Customs Monitor - Dashboard" cmd /k cd /d "C:\Users\david\Downloads\customs_monitor" ^&^& "C:\Users\david\Downloads\customs_monitor\.venv\Scripts\python.exe" -m streamlit run dashboard/app.py
+Indítás kész – két ablaknak kell nyílnia (Collector, Dashboard).
+RUN: start "Customs Monitor - Collector" cmd /k cd /d "C:\Users\david\Downloads\customs_monitor" ^&^& "C:\Users\david\Downloads\customs_monitor\.venv\Scripts\python.exe" -m src.main
+RUN: start "Customs Monitor - Dashboard" cmd /k cd /d "C:\Users\david\Downloads\customs_monitor" ^&^& "C:\Users\david\Downloads\customs_monitor\.venv\Scripts\python.exe" -m streamlit run dashboard/app.py
+Indítás kész – két ablaknak kell nyílnia (Collector, Dashboard).
