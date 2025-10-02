@@ -1,0 +1,13 @@
+requests
+feedparser
+beautifulsoup4
+lxml
+SQLAlchemy>=2.0
+pandas
+APScheduler
+langdetect
+python-dotenv
+slack_sdk
+streamlit
+plotly
+yagmail

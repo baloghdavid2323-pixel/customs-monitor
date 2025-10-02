@@ -1,0 +1,105 @@
+app:
+  timezone: "Europe/Budapest"
+  fetch_interval_minutes: 60
+  database_url: "sqlite:///data/monitor.db"
+  language_priority: ["hu", "en"]
+
+sources:
+  eurlex:
+    enabled: true
+    rss_urls:
+      - "https://eur-lex.europa.eu/rss/en/legislation_in_force.xml"
+      - "https://eur-lex.europa.eu/rss/en/legislation_proposed.xml"
+    keywords_any:
+      - "customs code"
+      - "union customs code"
+      - "UCC"
+      - "implementing regulation"
+      - "delegated regulation"
+      - "tariff"
+  taxud:
+    enabled: true
+    urls:
+      - "https://taxation-customs.ec.europa.eu/news_en"
+      - "https://taxation-customs.ec.europa.eu/customs_en"
+    keywords_any:
+      - "customs"
+      - "UCC"
+      - "tariff"
+      - "import"
+      - "export"
+  nav:
+    enabled: true
+    urls:
+      - "https://nav.gov.hu/"
+      - "https://nav.gov.hu/vam"
+      - "https://nav.gov.hu/ugyfeliranytu/nezzen-utana/inf_fuz/"
+    keywords_any:
+      - "vám"
+      - "vámtarifa"
+      - "jogszabály"
+      - "közlemény"
+
+monitoring:
+  keywords_hu:
+    - "vámszabály"
+    - "vámkódex"
+    - "vámtarifa"
+    - "jogszabályváltozás"
+    - "NAV közlemény"
+  keywords_en:
+    - "Union Customs Code"
+    - "Customs"
+    - "tariff"
+    - "duty"
+    - "amendment"
+
+analysis:
+  risk_rules:
+    high:
+      any:
+        - "hatálybalép"
+        - "kötelező"
+        - "penalty"
+        - "sanction"
+        - "delegated regulation"
+    medium:
+      any:
+        - "bejelentés"
+        - "változás"
+        - "notice"
+        - "guidance"
+    low:
+      any:
+        - "tervezet"
+        - "consultation"
+        - "public consultation"
+  impact_tags:
+    direct:
+      - "duty"
+      - "tariff"
+      - "áfa"
+      - "vám"
+      - "declaration"
+    indirect:
+      - "logistics"
+      - "supply chain"
+      - "it system"
+      - "forms"
+      - "reporting"
+
+notifications:
+  email:
+    enabled: false
+    smtp_user: "your.address@example.com"
+    smtp_password: "APP_PASSWORD"
+    subject_prefix: "[Customs Monitor]"
+  slack:
+    enabled: false
+    bot_token: "xoxb-xxxxxxxxxxxxxxxx"
+    channel: "#customs-monitor"
+
+reporting:
+  out_dir: "data/reports"
+  weekly_day_of_week: "FRI"
+  weekly_hour: 9
